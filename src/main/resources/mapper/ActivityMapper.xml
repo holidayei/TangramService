@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ch.tangram.mapper.ActivityMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ch.tangram.entity.MakeupItemEntity" id="ActivityMapperResultMap">
+
+    </resultMap>
+
+    <select id="queryMakeupItems" resultType="com.ch.tangram.entity.MakeupItemEntity"
+            parameterType="java.lang.Integer">
+        SELECT * FROM t_makeup_item
+        <if test="ids != null">
+            where id in
+            <foreach collection="ids" index="index" item="item"
+                     separator="," open="(" close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+</mapper>
